@@ -4,6 +4,7 @@ require 'sinatra/reloader' if development?
 before do 
 	@secret_code = ["3","4","5","6"]
 end
+
 get '/' do
 	erb :main
 end
