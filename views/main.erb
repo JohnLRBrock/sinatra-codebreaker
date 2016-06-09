@@ -1,1 +1,9 @@
 <h1>codebreaker</h1>
+
+<p>enter a 4 digit number</p>
+<form method="POST" action="/">
+	<input type="number" name="guess" min="1000" max="9999">
+</form>
+<% if @message %>
+<p><%= @message %></p> 
+<% end %>

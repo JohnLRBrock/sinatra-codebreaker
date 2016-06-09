@@ -4,11 +4,16 @@
 }
 
 h1 {
-	color: #ccc;
+	font-size: 68px;
+}
+
+p {	
+	font-size: 32px;
 }
 
 body {
     background: linear-gradient(#631796, #111) fixed; 
     text-align: center;
     font-family: simplifica;
+    color: #ccc;
 }
