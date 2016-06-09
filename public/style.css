@@ -1,0 +1,14 @@
+@font-face {
+    font-family: simplifica;
+    src: url(simplifica.ttf);
+}
+
+h1 {
+	color: #ccc;
+}
+
+body {
+    background: linear-gradient(#631796, #111) fixed; 
+    text-align: center;
+    font-family: simplifica;
+}
