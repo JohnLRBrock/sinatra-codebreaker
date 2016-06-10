@@ -19,7 +19,7 @@
 	<form method="POST" action="/">
 		<input type="number" name="guess" min="1000" max="9999" size="4">
 	</form>
-	(only digits 1-6)
+	
 	<% if @history != [] %>
 	<div id="response">
 			<p> <%= @history[-1] %> </p>
@@ -35,7 +35,11 @@
 	<div id="helpbox">
 		<%= erb :help, :layout => false %>
 	</div>
+	<% else %>
+		<p style="font-size: 20px; margin-top: 10px;">(only digits 1-6)</p>
 	<% end %>
+
 </div>
 <div id="spacerright">
+	<a href="/newgame">Start Over?</a>
 </div>

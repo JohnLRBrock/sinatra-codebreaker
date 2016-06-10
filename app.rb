@@ -5,9 +5,14 @@ configure do
 	enable :sessions
 end
 
+
 get '/' do
-	@history = session[:history]
-	erb :main
+	if session[:secret_code] == nil
+		redirect to('/newgame')
+	else
+		@history = session[:history]
+		erb :main
+	end
 end
 
 post '/' do
