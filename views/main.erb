@@ -1,22 +1,38 @@
-<h1>codebreaker</h1>
-
-<p>enter a 4 digit number</p>
-<form method="POST" action="/">
-	<input type="number" name="guess" min="1000" max="9999" size="4">
-</form>
-<% if @message %>
-<div id="response">
-	
-		<% @message.each do |x|%>
+<div id="sidebar">
+	<% @history.each do |g| %>
+		<p><%= g %></p> 
+		<% imgthing = evaluate_code(g) %>
+		<% imgthing.each do |x|%>
 			<% if x == "+"%> 
 				<img src="filled.png" >
 			<% else %>
 				<img src="hollow.png">
 			<% end %>
 		<% end %>
+	<% end %>
 </div>
-<div id="helpbox">
-	<%= erb :help, :layout => false %>
-</div>
+<div id="main">
+	<h1>codebreaker</h1>
 
-<% end %>
+	<p>enter a 4 digit number</p>
+	<form method="POST" action="/">
+		<input type="number" name="guess" min="1000" max="9999" size="4">
+	</form>
+	<% if @message %>
+	<div id="response">
+		
+			<% @message.each do |x|%>
+				<% if x == "+"%> 
+					<img src="filled.png" >
+				<% else %>
+					<img src="hollow.png">
+				<% end %>
+			<% end %>
+	</div>
+	<div id="helpbox">
+		<%= erb :help, :layout => false %>
+	</div>
+	<% end %>
+</div>
+<div id="spacerright">
+</div>

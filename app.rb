@@ -5,26 +5,32 @@ before do
 	@secret_code = ["3","4","5","6"]
 end
 
+
+history = []
+
 get '/' do
+	@history = history
 	erb :main
 end
 
 post '/' do
-	#evaluate guess set the message and reload main
 	@message = evaluate_code(params[:guess])
-	erb :main
+	@history = history
+	@history << params[:guess]
+	redirect to('/')
 end
+
 
 get '/win' do 
 	erb :win
 end
 
 helpers do 
-	# def set_code
-	# 	@secret_code = []
-	# 	4.times {@secret_code.push(rand(6))}
-	# 	# puts @secret_code.to_s
-	# end
+	def set_code
+		@secret_code = []
+		4.times {@secret_code.push(rand(6))}
+		@secret_code
+	end
 
 	def evaluate_code(user_guess)
 		guess_array = user_guess.scan(/./)
