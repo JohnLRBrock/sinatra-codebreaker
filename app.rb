@@ -1,42 +1,45 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 
-before do 
-	@secret_code = ["3","4","5","6"]
+configure do
+	enable :sessions
 end
 
-
-history = []
-
 get '/' do
-	@history = history
+	@history = session[:history]
 	erb :main
 end
 
 post '/' do
 	@message = evaluate_code(params[:guess])
-	@history = history
-	@history << params[:guess]
+	session[:history] << params[:guess]
 	redirect to('/')
 end
 
 
 get '/win' do 
+	@secret_code = session[:secret_code]
 	erb :win
+end
+
+get '/newgame' do 
+	session[:history] = []
+	session[:secret_code] = set_code
+	redirect to('/')
 end
 
 helpers do 
 	def set_code
 		@secret_code = []
-		4.times {@secret_code.push(rand(6))}
+		4.times {@secret_code.push((rand(5) + 1).to_s)}
 		@secret_code
 	end
 
 	def evaluate_code(user_guess)
 		guess_array = user_guess.scan(/./)
-		puts guess_array.to_s
+		puts session[:secret_code].to_s
 		computer_response = []
-		temp_code = @secret_code.clone
+		temp_code = session[:secret_code].clone
 		if temp_code == guess_array
 			# @game_over = true
 			redirect to('/win')
@@ -53,6 +56,7 @@ helpers do
 				 	temp_code[temp_code.index(guess)] = "x"
 				 end
 			end
+			puts computer_response.to_s
 			computer_response		
 		end
 	end

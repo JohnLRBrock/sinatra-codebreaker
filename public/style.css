@@ -28,8 +28,20 @@
     width: 14%; 
     height: 100%;
 }
+
+#win {
+    margin-top: 1%;
+}
+img {
+    height: 100px;
+}
+
 h1 {
 	font-size: 68px;
+}
+
+h2 {
+    font-size: 52px;
 }
 
 p {	
