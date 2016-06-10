@@ -1,4 +1,7 @@
 <div id="sidebar">
+	<% if @history.length > 0 %>
+		<p><%= 12 - @history.length%> turns remain</p>
+	<% end %>
 	<% @history.each do |g| %>
 		<p><%= g %></p> 
 		<% imgthing = evaluate_code(g) %>

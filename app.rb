@@ -10,8 +10,12 @@ get '/' do
 	if session[:secret_code] == nil
 		redirect to('/newgame')
 	else
-		@history = session[:history]
-		erb :main
+		if session[:history].length >= 12
+			redirect to('/lose')
+		else
+			@history = session[:history]
+			erb :main
+		end
 	end
 end
 
@@ -31,6 +35,11 @@ get '/newgame' do
 	session[:history] = []
 	session[:secret_code] = set_code
 	redirect to('/')
+end
+
+get '/lose' do 
+	@secret_code = session[:secret_code]
+	erb :lose
 end
 
 helpers do 
